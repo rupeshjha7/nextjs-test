@@ -55,7 +55,7 @@ const Home = () => {
                 </CardContent>
               </Card>
             ) : (
-              <Typography variant="h6" color="text.secondary">
+              <Typography variant="h6" color="text.primary">
                 Select an Test to view details
               </Typography>
             )}
