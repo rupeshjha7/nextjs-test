@@ -6,13 +6,12 @@ const Home = () => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const itemsPerPage = 5;
 
   useEffect(() => {
-    // Fetch data using axios
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then((response) => {
-        setItems(response.data);  // Update the items state with fetched data
+        setItems(response.data);
       })
       .catch((error) => {
         if (error.code === "ECONNABORTED") {
@@ -23,12 +22,10 @@ const Home = () => {
       });
   }, []);
 
-  // Calculate the current items to display based on currentPage and itemsPerPage
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Handle page change
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -60,17 +57,17 @@ const Home = () => {
             ))}
           </List>
 
-          {/* Pagination */}
+
           <Box mt={2} display="flex" justifyContent="center">
             <Pagination
-              count={Math.ceil(items.length / itemsPerPage)} // Total number of pages
+              count={Math.ceil(items.length / itemsPerPage)}
               page={currentPage}
               onChange={handlePageChange}
               color="primary"
             />
           </Box>
 
-          {/* Display the selected item details */}
+
           <Box mt={4}>
             {selectedItem ? (
               <Card sx={{ bgcolor: 'primary.light', color: 'white', textAlign: 'left' }}>
@@ -84,6 +81,7 @@ const Home = () => {
                 </CardContent>
               </Card>
             ) : (
+
               <Typography variant="h6" color="text.primary">
                 Select an item to view details
               </Typography>
